@@ -125,12 +125,23 @@ class SheetsClient:
     @staticmethod
     def _factura_to_row(factura: Factura) -> list:
         trimestre: str = factura.fecha_factura.split("-")[1] if factura.fecha_factura else "00"
+        match trimestre:
+            case "01" | "02" | "03":
+                trimestre = "T1"
+            case "04" | "05" | "06":
+                trimestre = "T2"
+            case "07" | "08" | "09":
+                trimestre = "T3"
+            case "10" | "11" | "12":
+                trimestre = "T4"
+            case _:
+                trimestre = ""
         return [
             factura.clave_unica,
             factura.fecha_factura,
             factura.emisor,
             factura.descripcion,
-            "T1" if trimestre in {"01", "02", "03"} else "T2" if trimestre in {"04", "05", "06"} else "T3" if trimestre in {"07", "08", "09"} else "T4" if trimestre in {"10", "11", "12"} else "",
+            trimestre,
             factura.importe_neto,
             factura.iva,
             factura.total,
