@@ -1,0 +1,6 @@
+"""Punto de entrada: uv run main.py"""
+
+from factura_processor.main import main
+
+if __name__ == "__main__":
+    main()
