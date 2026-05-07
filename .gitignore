@@ -10,6 +10,9 @@ credentials/credentials.json
 credentials/token.json
 credentials/*
 
+# Saved invoice PDFs (organised per issuer)
+invoices/
+
 # Python
 __pycache__/
 *.py[cod]

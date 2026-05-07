@@ -24,5 +24,8 @@ class Settings(BaseSettings):
     spreadsheet_id: str
     sheet_name: str = "Facturas"
 
+    # Local invoice storage
+    invoices_dir: str = "invoices"
+
     # App
     log_level: str = "INFO"

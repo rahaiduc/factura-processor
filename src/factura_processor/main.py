@@ -7,7 +7,7 @@ from .clients.gmail import GmailClient
 from .clients.sheets import SheetsClient
 from .config import Settings
 from .models import Factura
-from .tools import extract_text_from_pdf
+from .tools import extract_text_from_pdf, save_invoice_pdf
 
 
 def main() -> None:
@@ -62,7 +62,18 @@ def main() -> None:
                 logger.exception("   xAI extraction failed for: %s", attachment.filename)
                 continue
 
-        # 4. Flag the email as processed in Gmail.
+            # 4. Archive the PDF locally, grouped by issuer.
+            try:
+                save_invoice_pdf(
+                    attachment.data,
+                    attachment.filename,
+                    factura.emisor,
+                    settings.invoices_dir,
+                )
+            except Exception:
+                logger.exception("   Could not save PDF %s to disk", attachment.filename)
+
+        # 5. Flag the email as processed in Gmail.
         try:
             gmail.mark_as_processed(email.id)
         except Exception:
@@ -72,7 +83,7 @@ def main() -> None:
         logger.info("No valid invoices were extracted. Done.")
         return
 
-    # 5. Push everything to Google Sheets in a single batchUpdate.
+    # 6. Push everything to Google Sheets in a single batchUpdate.
     logger.info("Syncing %d invoice(s) to Google Sheets…", len(facturas))
     try:
         sheets.sync_facturas(facturas)
