@@ -15,12 +15,12 @@ xAI (Grok) — parses the text into structured JSON
     │
     ▼
 Google Sheets — single batchUpdate call
-<img width="1438" height="487" alt="image" src="https://github.com/user-attachments/assets/913c0766-b5f0-41e6-ab9e-2c5be55b24d7" />
 
     │
     ▼
 Email marked as processed (label applied + UNREAD removed)
 ```
+<img src="https://github.com/user-attachments/assets/913c0766-b5f0-41e6-ab9e-2c5be55b24d7">
 
 ## Extracted fields
 
