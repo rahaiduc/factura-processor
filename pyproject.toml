@@ -1,5 +1,5 @@
 [project]
-name = "factura-processor"
+name = "invoice-processor"
 version = "0.1.0"
 description = "Automation that reads PDF invoices from Gmail and exports them to Google Sheets"
 readme = "README.md"
