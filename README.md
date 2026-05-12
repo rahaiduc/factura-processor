@@ -1,4 +1,4 @@
-# factura-processor
+# invoice-processor
 
 Automation that **reads PDF invoices from Gmail** and exports them to **Google Sheets**, using xAI (Grok) for structured data extraction.
 
